@@ -5,7 +5,7 @@
         <img class="logo" src="/Logo.png" alt="" />
         <div class="contact pl-10">
           <img src="~/assets/images/icons/call.png" alt="" /><span
-            >+1(628)587-3235</span
+            >+1 (628) 587-3235</span
           >
         </div>
       </div>
