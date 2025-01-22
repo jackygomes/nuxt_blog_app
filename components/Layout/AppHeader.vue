@@ -2,7 +2,9 @@
   <div class="headerWrapper">
     <v-container class="d-flex justify-space-between">
       <div class="left d-flex justify-space-between">
-        <img class="logo" src="/Logo.png" alt="" />
+        <nuxt-link to="/"
+          ><img class="logo" src="/Logo.png" alt=""
+        /></nuxt-link>
         <div class="contact pl-10">
           <img src="~/assets/images/icons/call.png" alt="" /><span
             >+1 (628) 587-3235</span

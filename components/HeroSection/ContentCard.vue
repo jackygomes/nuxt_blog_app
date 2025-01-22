@@ -28,6 +28,7 @@
                 append-icon="mdi-arrow-right"
                 variant="text"
                 size="x-large"
+                to="/post/1"
               >
                 Read
               </v-btn>

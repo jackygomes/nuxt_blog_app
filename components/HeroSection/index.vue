@@ -7,7 +7,7 @@
         for unforgettable events.
       </p>
     </div>
-    <LayoutHeroSectionContentCard />
+    <HeroSectionContentCard />
   </div>
 </template>
 

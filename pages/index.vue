@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <LayoutHeroSection />
+    <HeroSection />
     <v-divider :thickness="1" class="divider" color="#6A6A6A"></v-divider>
     <div class="mainContentSection">
       <h5 class="text-h5 font-weight-bold pb-12">Popular Articles</h5>
