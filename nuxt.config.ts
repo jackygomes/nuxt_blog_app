@@ -25,13 +25,22 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }));
       });
     },
-    //...
+    "@nuxtjs/supabase",
   ],
   vite: {
     vue: {
       template: {
         transformAssetUrls,
       },
+    },
+  },
+  supabase: {
+    redirectOptions: {
+      login: "/login",
+      callback: "/confirm",
+      include: ["/admin/create-post"],
+      exclude: [],
+      cookieRedirect: false,
     },
   },
 });

@@ -22,6 +22,20 @@
             alt=""
           />
           <img class="avatar" src="~/assets/images/icons/avatar.png" alt="" />
+          <v-menu activator="parent">
+            <v-list>
+              <v-list-item v-for="item in menus" :key="item.title" link>
+                <NuxtLink :to="item.path"
+                  ><v-list-item-title>{{
+                    item.title
+                  }}</v-list-item-title></NuxtLink
+                >
+              </v-list-item>
+              <v-list-item>
+                <div @click="supabase.auth.signOut()">Log Out</div>
+              </v-list-item>
+            </v-list>
+          </v-menu>
         </div>
       </div>
     </v-container>
@@ -29,9 +43,33 @@
 </template>
 
 <script setup lang="ts">
+import { NuxtLink } from "#components";
+
 useSeoMeta({
   ogImage: "/Logo.png",
 });
+
+const menus = [
+  {
+    title: "Login",
+    path: "/login",
+  },
+  {
+    title: "Category",
+    subMenu: [
+      {
+        title: "Corporate Event",
+        path: "category/Corporate-Event",
+      },
+    ],
+  },
+  {
+    title: "Create Post",
+    path: "/admin/create-post",
+  },
+];
+
+const supabase = useSupabaseClient();
 </script>
 
 <style lang="scss" scoped>
@@ -61,6 +99,7 @@ useSeoMeta({
     .menu {
       border-radius: 40px;
       background-color: rgba(41, 107, 255, 0.05);
+      cursor: pointer;
       .menu_icon {
         width: 24px;
       }
