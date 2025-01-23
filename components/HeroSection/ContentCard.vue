@@ -5,6 +5,11 @@ const store = useBlogStore();
 const { posts } = storeToRefs(store);
 
 const { formatDate } = useDateUtils();
+
+const getCategoryName = (id) => {
+  const info = store.categories.find((item) => item.id === parseInt(id));
+  return info.name;
+};
 </script>
 
 <template>
@@ -30,7 +35,7 @@ const { formatDate } = useDateUtils();
             </div>
             <v-divider :thickness="1" class="my-4" color="#6A6A6A"></v-divider>
             <div class="bottom-actions d-flex justify-space-between">
-              <Button2 name="Corporate Events" />
+              <Button2 :name="getCategoryName(posts[0].category)" />
               <v-btn
                 class="text-none read-more px-2 py-3"
                 append-icon="mdi-arrow-right"
