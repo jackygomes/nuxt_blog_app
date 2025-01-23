@@ -1,3 +1,10 @@
+<script setup>
+import { storeToRefs } from "pinia";
+
+const store = useBlogStore();
+const { posts } = storeToRefs(store);
+</script>
+
 <template>
   <div class="wrapper">
     <HeroSection />
@@ -5,18 +12,14 @@
     <div class="mainContentSection">
       <h5 class="text-h5 font-weight-bold pb-12">Popular Articles</h5>
       <v-row>
-        <v-col cols="4" v-for="item in articles">
-          <ArticleCard />
+        <v-col cols="4" v-for="item in posts">
+          <ArticleCard :article="item" />
         </v-col>
       </v-row>
       <v-btn class="viewMore py-4 px-9" density="comfortable">View More</v-btn>
     </div>
   </div>
 </template>
-
-<script setup>
-const articles = Array(9);
-</script>
 
 <style lang="scss" scoped>
 .wrapper {

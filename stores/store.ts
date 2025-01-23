@@ -6,17 +6,26 @@ export const useBlogStore = defineStore("blog-store", {
     posts: [],
   }),
 
-  getters: {
-    getCategories: (state) => {
-      return state.categories;
-    },
-  },
-
   actions: {
     setCategories(cateogires: any[]) {
-      cateogires.map((item, i) => {
-        this.categories.push(item);
-      });
+      this.categories = [...this.categories, ...cateogires];
+    },
+    async fetchPosts() {
+      const supabase = useSupabaseClient();
+      try {
+        const { data, error } = await supabase
+          .from("Posts")
+          .select()
+          .order("created_at", { ascending: false });
+
+        if (error) {
+          throw error;
+        }
+
+        this.posts = [...this.posts, ...data];
+      } catch (err) {
+        console.error("Error fetching posts:", err);
+      }
     },
   },
 });

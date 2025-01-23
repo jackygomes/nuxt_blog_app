@@ -1,6 +1,6 @@
 <script setup>
 const store = useBlogStore();
-const { categories } = store;
+const { categories, posts } = store;
 const supabase = useSupabaseClient();
 
 const getCategories = async () => {
@@ -15,6 +15,9 @@ const getCategories = async () => {
 onMounted(() => {
   if (categories.length <= 0) {
     getCategories();
+  }
+  if (posts.length <= 0) {
+    store.fetchPosts();
   }
 });
 </script>

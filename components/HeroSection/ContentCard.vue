@@ -1,24 +1,32 @@
+<script setup>
+import { storeToRefs } from "pinia";
+
+const store = useBlogStore();
+const { posts } = storeToRefs(store);
+
+const { formatDate } = useDateUtils();
+</script>
+
 <template>
-  <v-card class="wrap" color="#FFFFFF" rounded="xl">
+  <v-card v-if="posts.length > 0" class="wrap" color="#FFFFFF" rounded="xl">
     <div class="d-flex flex-no-wrap justify-space-between">
       <v-row>
         <v-col :cols="6">
           <v-avatar class="" rounded="0" size="100%">
-            <v-img src="~/assets/images/HeroImage.png"></v-img>
+            <v-img :src="posts[0].imageUrl"></v-img>
           </v-avatar>
         </v-col>
         <v-col :cols="6">
           <div class="content pa-5">
-            <p class="Date">Jan 24, 2024</p>
+            <p class="Date">
+              {{ formatDate(posts[0].created_at, "long") }}
+            </p>
             <h1 class="title text-h4 py-5">
-              How to Plan a Successful Team-Building Retreat for Your Company
+              {{ posts[0].title }}
             </h1>
 
             <div class="description">
-              Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit
-              phasellus mollis sit aliquam sit nullam neque ultrices. Lorem
-              ipsum dolor sit amet consectetur adipiscing eli mattis sit
-              phasellus mollis sit aliquam sit nullam neque ultrices.
+              {{ posts[0].description }}
             </div>
             <v-divider :thickness="1" class="my-4" color="#6A6A6A"></v-divider>
             <div class="bottom-actions d-flex justify-space-between">
@@ -28,7 +36,7 @@
                 append-icon="mdi-arrow-right"
                 variant="text"
                 size="x-large"
-                to="/post/1"
+                :to="'post/article_' + posts[0].id"
               >
                 Read
               </v-btn>
@@ -56,6 +64,10 @@
     }
     .description {
       font-size: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
     .read-more {
       font-size: 16px;

@@ -1,26 +1,41 @@
+<script setup>
+const props = defineProps({
+  article: {
+    type: Object,
+    required: true,
+  },
+});
+const { formatDate } = useDateUtils();
+
+const getCategoryName = (stringObj) => {
+  const obj = JSON.parse(stringObj);
+  return obj.name;
+};
+</script>
+
 <template>
   <v-card class="mx-auto wrapper" max-width="400">
     <v-img
       class="align-end text-white coverImage"
       height="280"
-      src="~/assets/images/article_1.png"
+      :src="article.imageUrl"
       cover
     >
     </v-img>
-    <v-btn class="category" position="absolute" density="comfortable"
-      >Corporate Events</v-btn
-    >
+    <v-btn class="category" position="absolute" density="comfortable">{{
+      getCategoryName(article.category)
+    }}</v-btn>
 
-    <v-card-subtitle class="pt-4 px-0 date">08.08.2021</v-card-subtitle>
+    <v-card-subtitle class="pt-4 px-0 date">
+      {{ formatDate(article.created_at, "short") }}</v-card-subtitle
+    >
 
     <v-card-text class="px-0 py-0">
       <div class="title">
-        Top Trends in Corporate Event Design and Engagement
+        {{ article.title }}
       </div>
       <div class="description">
-        Progressively incentivize cooperative systems through technically sound
-        functionalities. Credibly productivate seamless data with flexible
-        schemas.
+        {{ article.description }}
       </div>
     </v-card-text>
   </v-card>
@@ -55,6 +70,10 @@
   .description {
     font-size: 14px;
     color: rgba(73, 80, 87, 1);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 </style>
