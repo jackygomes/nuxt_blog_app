@@ -21,7 +21,7 @@ const loggedIn = ref(!user.value ? false : true);
     <v-container class="d-flex justify-space-between">
       <div class="left d-flex justify-space-between">
         <nuxt-link to="/"
-          ><img class="logo" src="/Logo.png" alt=""
+          ><img class="logo" src="/public/Logo.png" alt=""
         /></nuxt-link>
         <div class="contact pl-10">
           <img src="~/assets/images/icons/call.png" alt="" /><span

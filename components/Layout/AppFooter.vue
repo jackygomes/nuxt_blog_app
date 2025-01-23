@@ -4,7 +4,7 @@
       <div class="d-flex justify-space-between">
         <div cols="8">
           <div class="logo">
-            <img src="/logo.png" alt="" />
+            <img src="/public/Logo.png" alt="" />
           </div>
           <div class="menus">
             <v-list class="d-flex justify-start" bg-color="transparent">
