@@ -11,6 +11,7 @@
         variant="outlined"
         v-model="password"
         label="Password"
+        type="password"
       ></v-text-field>
 
       <v-btn
@@ -36,6 +37,9 @@ const login = async () => {
     password: password.value,
   });
 
-  navigateTo("/");
+  reloadNuxtApp({
+    path: "/",
+    ttl: 1000, // default 10000
+  });
 };
 </script>

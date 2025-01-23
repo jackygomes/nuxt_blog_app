@@ -14,6 +14,18 @@ const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 
 const loggedIn = ref(!user.value ? false : true);
+
+const logout = async () => {
+  try {
+    supabase.auth.signOut();
+    reloadNuxtApp({
+      path: "/",
+      ttl: 1000, // default 10000
+    });
+  } catch (error) {
+    console.log("Logout error", error);
+  }
+};
 </script>
 
 <template>
@@ -58,7 +70,7 @@ const loggedIn = ref(!user.value ? false : true);
 
               <v-list-item to="/admin/create-post"> Create Post </v-list-item>
               <v-list-item v-if="loggedIn">
-                <div @click="supabase.auth.signOut()">Log Out</div>
+                <div @click="logout()">Log Out</div>
               </v-list-item>
             </v-list>
           </v-menu>
