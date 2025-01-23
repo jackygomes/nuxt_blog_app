@@ -33,6 +33,16 @@
         </div>
       </div>
       <v-divider :thickness="1" class="mt-8 mb-7" color="#6A6A6A"></v-divider>
+      <div class="bottomSection d-flex justify-space-between">
+        <div class="siteMap d-flex justify-start">
+          <span>Privacy Policy</span>
+          <span class="dot"></span>
+          <span>Terms & Conditions</span>
+        </div>
+        <div class="copyright">
+          2024 - © All rights Reserved - Events In Minutes
+        </div>
+      </div>
     </v-container>
   </div>
 </template>
@@ -91,6 +101,22 @@ const menus = [
       img {
         width: 20px;
         margin-right: 8px;
+      }
+    }
+  }
+
+  .bottomSection {
+    font-size: 12px;
+    color: rgba(34, 34, 34, 0.7);
+    .siteMap {
+      align-items: center;
+
+      .dot {
+        height: 4px;
+        width: 4px;
+        background-color: rgba(106, 106, 106, 1);
+        border-radius: 16px;
+        margin: 0 12px;
       }
     }
   }
