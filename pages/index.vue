@@ -19,7 +19,7 @@ watch(
   () => store.posts,
   (newItems) => {
     allPosts.value = JSON.parse(JSON.stringify(newItems)); // Deep copy
-    displayPosts.value = allPosts.value.splice(0, 6); // Deep copy
+    displayPosts.value = allPosts.value.splice(0, 9); // Deep copy
   },
   { immediate: true } // Run immediately on first load
 );
