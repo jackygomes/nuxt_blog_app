@@ -4,7 +4,4 @@ export default defineNuxtRouteMiddleware((to) => {
   if (!user.value && to.path === "/admin/create-post") {
     navigateTo("/");
   }
-  if (user.value && to.path === "/admin/create-post") {
-    navigateTo("/admin/create-post");
-  }
 });

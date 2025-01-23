@@ -26,7 +26,16 @@ export default defineNuxtConfig({
       });
     },
     "@nuxtjs/supabase",
+    [
+      "@pinia/nuxt",
+      {
+        autoImports: ["defineStore", "acceptHMRUpdate"],
+      },
+    ],
   ],
+  imports: {
+    dirs: ["stores"],
+  },
   vite: {
     vue: {
       template: {

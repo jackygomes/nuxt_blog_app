@@ -1,3 +1,24 @@
+<script setup>
+const store = useBlogStore();
+const { categories } = store;
+const supabase = useSupabaseClient();
+
+const getCategories = async () => {
+  try {
+    const { data, error } = await supabase.from("Categories").select();
+    store.setCategories(data);
+  } catch (error) {
+    console.log("category fetch error:", error);
+  }
+};
+
+onMounted(() => {
+  if (categories.length <= 0) {
+    getCategories();
+  }
+});
+</script>
+
 <template>
   <div class="layoutContainer">
     <LayoutAppHeader />

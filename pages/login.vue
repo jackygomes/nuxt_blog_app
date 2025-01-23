@@ -1,9 +1,17 @@
 <template>
   <v-sheet class="mx-auto pt-12" width="400">
     <v-form fast-fail @submit.prevent="login()">
-      <v-text-field v-model="email" label="Email"></v-text-field>
+      <v-text-field
+        variant="outlined"
+        v-model="email"
+        label="Email"
+      ></v-text-field>
 
-      <v-text-field v-model="password" label="Password"></v-text-field>
+      <v-text-field
+        variant="outlined"
+        v-model="password"
+        label="Password"
+      ></v-text-field>
 
       <v-btn
         class="mt-2 py-7"
