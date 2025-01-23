@@ -5,7 +5,9 @@ export const useBlogStore = defineStore("blog-store", {
     categories: [] as any[],
     posts: [],
   }),
-
+  getters: {
+    getPosts: (state) => [...state.posts],
+  },
   actions: {
     setCategories(cateogires: any[]) {
       this.categories = [...this.categories, ...cateogires];

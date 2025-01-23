@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper pt-12 pb-8">
+  <div class="wrapper mt-8 pt-12 pb-8">
     <v-container>
       <div class="d-flex justify-space-between">
         <div cols="8">

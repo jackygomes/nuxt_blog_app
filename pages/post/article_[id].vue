@@ -19,7 +19,7 @@ const fetchArticle = async (id) => {
     .select("*")
     .eq("id", id)
     .single();
-  console.log("rengoki1111111", data);
+
   if (data) {
     article.value = data;
     return;

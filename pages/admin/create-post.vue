@@ -36,7 +36,7 @@ const createPost = async () => {
   try {
     const insertPost = {
       title: title.value,
-      category: selectedCategory.value,
+      category: selectedCategory.value.id,
       description: description.value,
       imageUrl: uploadedFilePath,
     };

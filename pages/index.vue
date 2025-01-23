@@ -1,8 +1,28 @@
 <script setup>
-import { storeToRefs } from "pinia";
-
 const store = useBlogStore();
-const { posts } = storeToRefs(store);
+const allPosts = ref([]);
+const displayPosts = ref([]);
+const isViewMore = ref(true);
+
+const viewMore = () => {
+  let addNumberOfItems = 3;
+  if (allPosts.length > 3) {
+    addNumberOfItems = allPosts.length;
+  }
+  const selectedItems = allPosts.value.splice(0, addNumberOfItems);
+  displayPosts.value.push(...selectedItems);
+  if (displayPosts.value.length === store.posts.length) {
+    isViewMore.value = false;
+  }
+};
+watch(
+  () => store.posts,
+  (newItems) => {
+    allPosts.value = JSON.parse(JSON.stringify(newItems)); // Deep copy
+    displayPosts.value = allPosts.value.splice(0, 6); // Deep copy
+  },
+  { immediate: true } // Run immediately on first load
+);
 </script>
 
 <template>
@@ -12,11 +32,17 @@ const { posts } = storeToRefs(store);
     <div class="mainContentSection">
       <h5 class="text-h5 font-weight-bold pb-12">Popular Articles</h5>
       <v-row>
-        <v-col cols="4" v-for="item in posts">
+        <v-col cols="4" v-for="item in displayPosts">
           <ArticleCard :article="item" />
         </v-col>
       </v-row>
-      <v-btn class="viewMore py-4 px-9" density="comfortable">View More</v-btn>
+      <v-btn
+        v-if="isViewMore"
+        @click="viewMore()"
+        class="viewMore py-4 px-9"
+        density="comfortable"
+        >View More</v-btn
+      >
     </div>
   </div>
 </template>

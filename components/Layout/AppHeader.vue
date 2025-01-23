@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import { NuxtLink } from "#components";
+import { useRoute } from "#app";
+
+useSeoMeta({
+  ogImage: "/Logo.png",
+});
+
+const route = useRoute();
+
+const store = useBlogStore();
+const { categories } = storeToRefs(store);
+const supabase = useSupabaseClient();
+const user = useSupabaseUser();
+
+const loggedIn = ref(!user.value ? false : true);
+</script>
+
 <template>
   <div class="headerWrapper">
     <v-container class="d-flex justify-space-between">
@@ -24,14 +42,22 @@
           <img class="avatar" src="~/assets/images/icons/avatar.png" alt="" />
           <v-menu activator="parent">
             <v-list>
-              <v-list-item v-for="item in menus" :key="item.title" link>
-                <NuxtLink :to="item.path"
-                  ><v-list-item-title>{{
-                    item.title
-                  }}</v-list-item-title></NuxtLink
-                >
+              <v-list-item v-if="route.fullPath != '/'" to="/">
+                Home
               </v-list-item>
-              <v-list-item>
+              <v-list-item v-if="!loggedIn" to="/login"> Login </v-list-item>
+              <hr />
+              <v-list-subheader>Categories</v-list-subheader>
+
+              <v-list-item
+                v-for="item in categories"
+                :to="'/category/category_' + item.id"
+                >{{ item.name }}
+              </v-list-item>
+              <hr />
+
+              <v-list-item to="/admin/create-post"> Create Post </v-list-item>
+              <v-list-item v-if="loggedIn">
                 <div @click="supabase.auth.signOut()">Log Out</div>
               </v-list-item>
             </v-list>
@@ -41,36 +67,6 @@
     </v-container>
   </div>
 </template>
-
-<script setup lang="ts">
-import { NuxtLink } from "#components";
-
-useSeoMeta({
-  ogImage: "/Logo.png",
-});
-
-const menus = [
-  {
-    title: "Login",
-    path: "/login",
-  },
-  {
-    title: "Category",
-    subMenu: [
-      {
-        title: "Corporate Event",
-        path: "category/Corporate-Event",
-      },
-    ],
-  },
-  {
-    title: "Create Post",
-    path: "/admin/create-post",
-  },
-];
-
-const supabase = useSupabaseClient();
-</script>
 
 <style lang="scss" scoped>
 .headerWrapper {
